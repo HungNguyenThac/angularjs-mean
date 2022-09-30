@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+
+    <!-- script start -->
+    <script>
+      var mainModule = angular
+        .module("mainModule", [])
+        .controller("learn-controller", learnController);
+
+      learnController.$inject = ["$scope"];
+
+      function learnController($scope) {
+        $scope.student = {
+          name: "Nguyen thac hung",
+          age: 28,
+        };
+      }
+    </script>
+    <!-- script end -->
+  </head>
+  <body ng-app="mainModule" ng-controller="learn-controller">
+    <h1>{{student.name}}</h1>
+    <h2>{{student.age}}</h2>
+  </body>
+</html>

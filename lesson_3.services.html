@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <!-- http start -->
+    <script>
+      var mainModule = angular.module("mainModule", []);
+
+      mainModule.controller("learn-angularjs", function ($scope, $http) {
+        $scope.data = [];
+        $scope.inputValue = "hello";
+
+        var getReq = {
+          method: "GET",
+          url: "https://jsonplaceholder.typicode.com/users",
+        };
+
+        $http(getReq)
+          .then((response) => {
+            $scope.data = response.data;
+          })
+          .catch((err) => console.log(err));
+
+        $scope.test = () => {
+          console.log("hello");
+        };
+        $scope.changeValue = () => console.log("bye");
+      });
+
+      function onChangeInput(e) {
+        console.log(e.target.value);
+      }
+    </script>
+    <!-- http end -->
+  </head>
+  <body ng-app="mainModule" ng-controller="learn-angularjs">
+    <div ng-repeat="i in data">
+      <p>{{i.name}}</p>
+    </div>
+    <input type="text" ng-model="inputValue" onchange="onChangeInput" />
+    <button ng-click="test()">click here</button>
+    <h1>{{inputValue}}</h1>
+  </body>
+</html>
